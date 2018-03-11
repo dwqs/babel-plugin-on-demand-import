@@ -1,5 +1,5 @@
 {
-    "name": "babel-plugin-import-on-demand",
+    "name": "@dwqs/babel-plugin-import-on-demand",
     "version": "0.0.1",
     "description": "Babel plugin for importing components on demand",
     "author": "pomysky@gmail.com",
