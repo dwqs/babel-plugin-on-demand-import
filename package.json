@@ -31,20 +31,24 @@
         "prepublishOnly": "npm run build",
         "build": "npx babel src --out-dir lib --extensions .js --copy-files --presets=env",
         "ilint": "npx eslint --color src/**/*.js",
-        "fix": "npx eslint --fix src/**/*.js"
+        "fix": "npx eslint --fix src/**/*.js",
+        "test": "npx mocha test/index.js"
     },
     "dependencies": {},
     "devDependencies": {
         "babel-cli": "^6.26.0",
+        "babel-core": "^6.26.0",
         "babel-eslint": "^8.2.2",
         "babel-preset-env": "^1.6.1",
+        "chai": "^4.1.2",
         "eslint": "^4.18.2",
         "eslint-config-standard": "^11.0.0",
         "eslint-plugin-import": "^2.9.0",
         "eslint-plugin-node": "^6.0.1",
         "eslint-plugin-promise": "^3.7.0",
         "eslint-plugin-standard": "^3.0.1",
-        "husky": "^0.14.3"
+        "husky": "^0.14.3",
+        "mocha": "^5.0.4"
     },
     "engines": {
         "node": ">= 6.0.0"
