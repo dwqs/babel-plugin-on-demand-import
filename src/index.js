@@ -5,6 +5,7 @@ function parseName (str) {
 
 export default function importOnDemand ({types: t}) {
     return {
+        name: 'import-on-demand',
         visitor: {
             ImportDeclaration (path, { opts = {} }) {
                 const node = path.node;
