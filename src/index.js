@@ -13,7 +13,7 @@ function onDemandImportPlugin (path, t, opts) {
     const node = path.node;
     if (node && node.source.value === libraryName) {
         node.specifiers.forEach(specifier => {
-            if (specifier.type === 'ImportSpecifier') {
+            if (t.isImportSpecifier(specifier)) {
                 path.insertBefore(
                     t.importDeclaration(
                         [t.importDefaultSpecifier(t.identifier(specifier.imported.name))],
