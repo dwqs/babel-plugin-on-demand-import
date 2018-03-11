@@ -3,31 +3,49 @@ function parseName (str) {
     return str.replace(/([A-Z])/g, ($1) => `-${$1.toLowerCase()}`);
 }
 
+function importOnDemandPlugin (path, t, opts) {
+    const { libraryName, libraryPath = 'lib', stylePath = undefined, needImportStyle = false } = opts;
+    if (!libraryName) {
+        console.error('libraryName should be provided in babel-plugin-import-on-demand');
+        return;
+    }
+
+    const node = path.node;
+    if (node && node.source.value === libraryName) {
+        node.specifiers.forEach(specifier => {
+            if (specifier.type === 'ImportSpecifier') {
+                path.insertBefore(
+                    t.importDeclaration(
+                        [t.importDefaultSpecifier(t.identifier(specifier.imported.name))],
+                        t.stringLiteral(`${libraryName}/${libraryPath}/${parseName(specifier.imported.name)}`)
+                    )
+                );
+
+                if (stylePath && needImportStyle) {
+                    path.insertBefore(
+                        t.importDeclaration(
+                            [],
+                            t.stringLiteral(`${libraryName}/${stylePath}/${parseName(specifier.imported.name)}.css`)
+                        )
+                    );
+                }
+            }
+        });
+        path.remove();
+    }
+}
+
 export default function importOnDemand ({types: t}) {
     return {
         name: 'import-on-demand',
         visitor: {
             ImportDeclaration (path, { opts = {} }) {
-                const node = path.node;
-                const { libraryName, libraryPath = 'lib', cssPath = undefined, needImportCSS = false } = opts;
-                
-                if (!libraryName) {
-                    console.error('libraryName should be provided in babel-plugin-import-on-demand');
-                    return;
-                }
-
-                if (node.source.value === libraryName) {
-                    node.specifiers.forEach(specifier => {
-                        if (specifier.type === 'ImportSpecifier') {
-                            path.insertBefore(
-                                t.importDeclaration(
-                                    [t.importDefaultSpecifier(t.identifier(specifier.imported.name))],
-                                    t.stringLiteral(`${libraryName}/${libraryPath}/${parseName(specifier.imported.name)}`)
-                                )
-                            );
-                        }
+                if (Object.prototype.toString.call(opts) === '[object Array]') {
+                    opts.forEach(opt => {
+                        importOnDemandPlugin(path, t, opt);
                     });
-                    path.remove();
+                } else {
+                    importOnDemandPlugin(path, t, opts);
                 }
             }
         }
