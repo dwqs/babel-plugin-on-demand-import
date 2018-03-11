@@ -3,12 +3,12 @@ const fs = require('fs');
 const expect = require('chai').expect;
 const babel = require('babel-core');
 
-const importOnDemand = require('../lib/index').default;
+const onDemandimport = require('../lib/index').default;
 
-describe('import on demand', () => {
+describe('on demand import', () => {
     it('libraryName', () => {
         const result = babel.transform('import { A } from "test"', {
-            plugins: [[importOnDemand, {
+            plugins: [[onDemandimport, {
                 libraryName: 'test'
             }]]
         });
@@ -18,7 +18,7 @@ describe('import on demand', () => {
 
     it('libraryPath', () => {
         const result = babel.transform('import { AaCc, BbDd } from "test"', {
-            plugins: [[importOnDemand, {
+            plugins: [[onDemandimport, {
                 libraryName: 'test',
                 libraryPath: 'dist'
             }]]
@@ -30,7 +30,7 @@ describe('import on demand', () => {
 
     it('Array', () => {
         const result = babel.transformFileSync(path.resolve(__dirname, 'array-code.js'), {
-            plugins: [[importOnDemand, [
+            plugins: [[onDemandimport, [
                 {
                     libraryName: 'test1',
                     libraryPath: 'dist/my-library',
