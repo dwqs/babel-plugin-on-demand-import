@@ -22,7 +22,7 @@ export default function importOnDemand ({types: t}) {
                             path.insertBefore(
                                 t.importDeclaration(
                                     [t.importDefaultSpecifier(t.identifier(specifier.imported.name))],
-                                    t.stringLiteral(`${libraryName}/${lib}/${parseName(specifier.imported.name)}`)
+                                    t.stringLiteral(`${libraryName}/${libraryPath}/${parseName(specifier.imported.name)}`)
                                 )
                             );
                         }
