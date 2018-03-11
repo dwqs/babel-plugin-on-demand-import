@@ -1,6 +1,6 @@
 {
-    "name": "@dwqs/babel-plugin-import-on-demand",
-    "version": "0.0.1",
+    "name": "babel-plugin-on-demand-import",
+    "version": "1.0.0",
     "description": "Babel plugin for importing components on demand",
     "author": "pomysky@gmail.com",
     "main": "lib/index.js",
@@ -14,7 +14,7 @@
     ],
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/dwqs/babel-plugin-import-on-demand.git"
+        "url": "git+https://github.com/dwqs/babel-plugin-on-demand-import.git"
     },
     "keywords": [
         "babel",
@@ -23,9 +23,9 @@
         "on-demand"
     ],
     "bugs": {
-        "url": "https://github.com/dwqsbabel-plugin-import-on-demand/issues"
+        "url": "https://github.com/dwqs/babel-plugin-on-demand-import/issues"
     },
-    "homepage": "https://github.com/dwqs/babel-plugin-import-on-demand#readme",
+    "homepage": "https://github.com/dwqs/babel-plugin-on-demand-import#readme",
     "scripts": {
         "prepush": "npm run ilint -q",
         "prepublishOnly": "npm run build",
