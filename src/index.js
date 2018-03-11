@@ -23,12 +23,12 @@ export default function importOnDemand ({types: t}) {
                                     [t.importDefaultSpecifier(t.identifier(specifier.imported.name))],
                                     t.stringLiteral(`${libraryName}/${lib}/${parseName(specifier.imported.name)}`)
                                 )
-                            )
+                            );
                         }
                     });
                     path.remove();
                 }
             }
         }
-    }
+    };
 };
