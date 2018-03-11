@@ -1,0 +1,52 @@
+{
+    "name": "babel-plugin-import-on-demand",
+    "version": "0.0.1",
+    "description": "Babel plugin for importing components on demand",
+    "author": "pomysky@gmail.com",
+    "main": "lib/index.js",
+    "license": "MIT",
+    "private": false,
+    "files": [
+        "lib",
+        "LICENSE",
+        "package.json",
+        "README.md"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/dwqs/babel-plugin-import-on-demand.git"
+    },
+    "keywords": [
+        "babel",
+        "babel-plugin",
+        "import",
+        "on-demand"
+    ],
+    "bugs": {
+        "url": "https://github.com/dwqsbabel-plugin-import-on-demand/issues"
+    },
+    "homepage": "https://github.com/dwqs/babel-plugin-import-on-demand#readme",
+    "scripts": {
+        "prepush": "npm run ilint -q",
+        "prepublishOnly": "npm run build",
+        "build": "npx babel src --out-dir lib --extensions .js --copy-files --presets=env",
+        "ilint": "npx eslint --color src/**/*.js",
+        "fix": "npx eslint --fix src/**/*.js"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "babel-cli": "^6.26.0",
+        "babel-eslint": "^8.2.2",
+        "babel-preset-env": "^1.6.1",
+        "eslint": "^4.18.2",
+        "eslint-config-standard": "^11.0.0",
+        "eslint-plugin-import": "^2.9.0",
+        "eslint-plugin-node": "^6.0.1",
+        "eslint-plugin-promise": "^3.7.0",
+        "eslint-plugin-standard": "^3.0.1",
+        "husky": "^0.14.3"
+    },
+    "engines": {
+        "node": ">= 6.0.0"
+    }
+}
