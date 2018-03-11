@@ -3,7 +3,7 @@ function parseName (str) {
     return str.replace(/([A-Z])/g, ($1) => `-${$1.toLowerCase()}`);
 }
 
-function importOnDemandPlugin (path, t, opts) {
+function onDemandImportPlugin (path, t, opts) {
     const { libraryName, libraryPath = 'lib', stylePath = undefined, needImportStyle = false } = opts;
     if (!libraryName) {
         console.error('libraryName should be provided in babel-plugin-import-on-demand');
@@ -35,17 +35,17 @@ function importOnDemandPlugin (path, t, opts) {
     }
 }
 
-export default function importOnDemand ({types: t}) {
+export default function onDemandImport ({types: t}) {
     return {
-        name: 'import-on-demand',
+        name: 'on-demand-import',
         visitor: {
             ImportDeclaration (path, { opts = {} }) {
                 if (Object.prototype.toString.call(opts) === '[object Array]') {
                     opts.forEach(opt => {
-                        importOnDemandPlugin(path, t, opt);
+                        onDemandImportPlugin(path, t, opt);
                     });
                 } else {
-                    importOnDemandPlugin(path, t, opts);
+                    onDemandImportPlugin(path, t, opts);
                 }
             }
         }
