@@ -14,10 +14,15 @@ function onDemandImportPlugin (path, t, opts) {
     if (node && node.source.value === libraryName) {
         node.specifiers.forEach(specifier => {
             if (t.isImportSpecifier(specifier)) {
+                // Supports as operator(fix #1)
+                const importedName = specifier.imported.name;
+                const localName = specifier.local.name;
+                const finalName = importedName === localName ? importedName : localName;
+
                 path.insertBefore(
                     t.importDeclaration(
-                        [t.importDefaultSpecifier(t.identifier(specifier.imported.name))],
-                        t.stringLiteral(`${libraryName}/${libraryPath}/${parseName(specifier.imported.name)}`)
+                        [t.importDefaultSpecifier(t.identifier(finalName))],
+                        t.stringLiteral(`${libraryName}/${libraryPath}/${parseName(importedName)}`)
                     )
                 );
 
@@ -25,7 +30,7 @@ function onDemandImportPlugin (path, t, opts) {
                     path.insertBefore(
                         t.importDeclaration(
                             [],
-                            t.stringLiteral(`${libraryName}/${stylePath}/${parseName(specifier.imported.name)}.css`)
+                            t.stringLiteral(`${libraryName}/${stylePath}/${parseName(importedName)}.css`)
                         )
                     );
                 }
