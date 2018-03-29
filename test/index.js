@@ -16,6 +16,16 @@ describe('on demand import', () => {
         expect(expected === result.code).to.be.true;
     });
 
+    it('as operator', () => {
+        const result = babel.transform('import { A as B } from "test"', {
+            plugins: [[onDemandimport, {
+                libraryName: 'test'
+            }]]
+        });
+        const expected = 'import B from "test/lib/a";';
+        expect(expected === result.code).to.be.true;
+    });
+
     it('libraryPath', () => {
         const result = babel.transform('import { AaCc, BbDd } from "test"', {
             plugins: [[onDemandimport, {
