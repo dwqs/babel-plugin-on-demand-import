@@ -77,6 +77,7 @@ require('test2/style1/b.css');
 ## Used Components
 * [v2-datepicker](https://github.com/dwqs/v2-datepicker/)
 * [vue-area-linkage](https://github.com/dwqs/vue-area-linkage)
+* [react-area-linkage](https://github.com/dwqs/react-area-linkage)
 
 ## LICENSE
 MIT
