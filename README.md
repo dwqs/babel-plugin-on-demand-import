@@ -79,5 +79,8 @@ require('test2/style1/b.css');
 * [vue-area-linkage](https://github.com/dwqs/vue-area-linkage)
 * [react-area-linkage](https://github.com/dwqs/react-area-linkage)
 
+## Similar project
+* [babel-plugin-replace-import-path](https://github.com/fmfe/babel-plugin-replace-import-path)
+
 ## LICENSE
 MIT
